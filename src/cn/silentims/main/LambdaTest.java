@@ -94,11 +94,23 @@ public class LambdaTest {
     //优化方式3：lambda
     @Test
     public  void test5(){
-        List<Student> students = filterStudentByFilter(this.students, student -> student.getGrade() > 470);
-        for (Student student : students) {
+        List<Student> list = filterStudentByFilter(this.students, student -> student.getGrade() > 470);
+        //老的写法
+        for (Student student : list) {
             System.out.println(student);
             //Student{id=1, name='张三', age=17, grade=560.5}
         }
+
+        //lambda写法
+        list.forEach(System.out::println);
+    }
+
+    //优化方式4：lamda+stream流
+    @Test
+    public void test6(){
+        students.stream()
+                .filter(student -> student.getAge() > 17)
+                .forEach(System.out::println);
     }
 
 }
